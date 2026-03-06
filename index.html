@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Clause Holdings builds AI/ML-led SaaS and analytics platforms that turn complexity into clear decisions." />
+  <title>Clause Holdings — AI/ML • SaaS • Analytics</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Clause Holdings" />
+  <meta property="og:description" content="AI/ML-led SaaS and analytics platforms that turn complexity into clear decisions." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    /* =========================================
+       Brand tokens (swap to your exact system)
+       ========================================= */
+    :root{
+      --bg: #0b0f14;
+      --bg2:#0e141c;
+      --surface:#0f1722;
+      --surface2:#111c29;
+      --border: rgba(255,255,255,.08);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --faint: rgba(255,255,255,.45);
+      --accent: #7c5cff;      /* replace with your accent */
+      --accent2:#22d3ee;      /* optional secondary accent */
+      --shadow: 0 12px 40px rgba(0,0,0,.45);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 420px at 15% 10%, rgba(124,92,255,.18), transparent 55%),
+        radial-gradient(900px 420px at 85% 18%, rgba(34,211,238,.14), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      line-height: 1.45;
+    }
+
+    a{ color:inherit; text-decoration: none; }
+    .wrap{ width: min(var(--max), 92vw); margin: 0 auto; }
+    .pill{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.35rem .7rem;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+    .dot{
+      width:8px; height:8px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(124,92,255,.12);
+    }
+
+    /* =========================================
+       Header / Nav
+       ========================================= */
+    header{
+      position: sticky;
+      top:0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(11,15,20,.6);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content: space-between;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.7rem;
+      letter-spacing: .2px;
+      font-weight: 650;
+    }
+    .logo{
+      width: 34px; height: 34px; border-radius: 10px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.35), transparent 60%),
+        linear-gradient(135deg, rgba(124,92,255,.9), rgba(34,211,238,.75));
+      box-shadow: 0 10px 30px rgba(124,92,255,.18);
+    }
+
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap: 18px;
+      align-items:center;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    nav a:hover{ color: var(--text); }
+
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:.55rem;
+      padding: .75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(255,255,255,.14); background: rgba(255,255,255,.05); }
+    .btn.primary{
+      border: 1px solid rgba(124,92,255,.45);
+      background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(124,92,255,.55));
+      box-shadow: 0 12px 30px rgba(124,92,255,.18);
+    }
+    .btn.primary:hover{ border-color: rgba(124,92,255,.65); }
+
+    /* Mobile menu */
+    .menuBtn{ display:none; }
+    .mobilePanel{
+      display:none;
+      border-top: 1px solid var(--border);
+      padding: 12px 0 16px;
+    }
+    .mobilePanel a{
+      display:block;
+      padding: 10px 0;
+      color: var(--muted);
+    }
+    .mobilePanel a:hover{ color: var(--text); }
+
+    /* =========================================
+       Hero
+       ========================================= */
+    .hero{
+      padding: 58px 0 26px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 22px;
+      align-items: start;
+    }
+    h1{
+      margin: 14px 0 14px;
+      font-size: clamp(2rem, 3.6vw, 3.2rem);
+      line-height: 1.12;
+      letter-spacing: -.02em;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: 1.06rem;
+      max-width: 56ch;
+    }
+    .heroActions{ display:flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+
+    .kpis{
+      display:grid;
+      gap: 10px;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .card.pad{ padding: 16px; }
+    .miniTitle{
+      color: var(--faint);
+      font-size: .85rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .big{
+      margin-top: 8px;
+      font-size: 1.2rem;
+      font-weight: 680;
+    }
+    .small{
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    /* =========================================
+       Sections
+       ========================================= */
+    section{ padding: 44px 0; }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    h2{
+      margin:0;
+      font-size: 1.55rem;
+      letter-spacing: -.01em;
+    }
+    .subhead{
+      margin:0;
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .itemTitle{
+      font-weight: 680;
+      margin: 8px 0 6px;
+    }
+    .itemCopy{ color: var(--muted); margin: 0; }
+
+    .tagRow{
+      display:flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 10px;
+    }
+    .tag{
+      font-size: .82rem;
+      color: var(--muted);
+      padding: .35rem .6rem;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .linkArrow{
+      display:inline-flex; align-items:center; gap:.45rem;
+      margin-top: 12px;
+      color: rgba(255,255,255,.86);
+      font-weight: 600;
+    }
+    .linkArrow span{ opacity: .8; }
+
+    .divider{
+      height: 1px;
+      background: var(--border);
+      margin: 16px 0 0;
+    }
+
+    /* =========================================
+       CTA band
+       ========================================= */
+    .ctaBand{
+      padding: 38px 0 56px;
+    }
+    .ctaInner{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-radius: calc(var(--radius) + 6px);
+      border: 1px solid rgba(124,92,255,.25);
+      background:
+        radial-gradient(520px 220px at 20% 20%, rgba(124,92,255,.20), transparent 55%),
+        radial-gradient(520px 220px at 85% 20%, rgba(34,211,238,.14), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));
+      box-shadow: var(--shadow);
+    }
+
+    footer{
+      border-top: 1px solid var(--border);
+      padding: 18px 0 26px;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+    .footRow{ display:flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+    /* =========================================
+       Responsive
+       ========================================= */
+    @media (max-width: 940px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+      .menuBtn{ display:inline-flex; }
+      .mobilePanel.show{ display:block; }
+      .ctaInner{ flex-direction: column; align-items:flex-start; }
+    }
+
+    /* Subtle fade-in */
+    .reveal{ opacity: 0; transform: translateY(8px); transition: opacity .5s ease, transform .5s ease; }
+    .reveal.on{ opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Clause Holdings home">
+          <div class="logo" aria-hidden="true"></div>
+          <div>Clause Holdings</div>
+        </a>
+
+        <nav aria-label="Primary navigation">
+          <ul>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#industries">Industries</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="cta">
+          <button class="btn menuBtn" id="menuBtn" aria-expanded="false" aria-controls="mobilePanel">Menu</button>
+          <a class="btn primary" href="#contact">Talk to us</a>
+        </div>
+      </div>
+
+      <div id="mobilePanel" class="mobilePanel" aria-label="Mobile navigation">
+        <a href="#products">Products</a>
+        <a href="#capabilities">Capabilities</a>
+        <a href="#industries">Industries</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <div class="wrap hero">
+      <div class="heroGrid">
+        <div class="reveal">
+          <div class="pill"><span class="dot" aria-hidden="true"></span> AI/ML • SaaS Platforms • Analytics</div>
+          <h1>AI-first platforms that turn complexity into clear decisions.</h1>
+          <p class="lead">
+            Clause Holdings builds AI/ML-led software products and analytics platforms for teams that need
+            <strong>speed, governance, and decision confidence</strong>—without adding operational noise.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn primary" href="#contact">Start a conversation</a>
+            <a class="btn" href="#products">Explore our platforms</a>
+          </div>
+
+          <div class="tagRow" style="margin-top:16px;">
+            <span class="tag">AI/ML Engineering</span>
+            <span class="tag">SaaS Product Development</span>
+            <span class="tag">Analytics & Decision Intelligence</span>
+            <span class="tag">Quality Modernization</span>
+          </div>
+        </div>
+
+        <div class="kpis">
+          <div class="card pad reveal">
+            <div class="miniTitle">Focus</div>
+            <div class="big">Signal over noise</div>
+            <p class="small">We build systems that improve decisions—before they become operational problems.</p>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="miniTitle">What you get</div>
+            <div class="big">Product-grade execution</div>
+            <p class="small">Data → model → workflow → governance. Built to run in production.</p>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="miniTitle">Engagements</div>
+            <div class="big">Platform + outcomes</div>
+            <p class="small">Clear scope, measurable value, and a path to scale.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT WE DO -->
+    <section>
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>What we do</h2>
+            <p class="subhead">
+              We design and build AI-enabled platforms that help teams move from <strong>activity → insight → action</strong>.
+              Our work spans SaaS product development, analytics engineering, and applied AI/ML—with a practical focus on shipping.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card pad reveal">
+            <div class="miniTitle">AI/ML + SaaS Platforms</div>
+            <div class="itemTitle">Build the platform layer</div>
+            <p class="itemCopy">From APIs to workflows to scalable architecture—designed for real users and real constraints.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="miniTitle">Analytics</div>
+            <div class="itemTitle">Make performance measurable</div>
+            <p class="itemCopy">Metrics design, pipelines, dashboards, and forecasting—so decisions are anchored in reality.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="miniTitle">Quality Modernization</div>
+            <div class="itemTitle">Operate with confidence</div>
+            <p class="itemCopy">Traceability, automation, and governance—so releases scale without brittle processes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Platforms</h2>
+            <p class="subhead">
+              A product-led approach: build reusable platforms that create clarity, reduce overhead, and improve decision speed.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card pad reveal">
+            <div class="miniTitle">testarq</div>
+            <div class="itemTitle">Quality Intelligence Platform</div>
+            <p class="itemCopy">
+              Converts requirements into traceable test assets and provides visibility into coverage, risk, and readiness—
+              so quality becomes a decision system, not a reporting burden.
+            </p>
+            <a class="linkArrow" href="#contact">Learn more <span>→</span></a>
+            <div class="divider"></div>
+            <div class="tagRow">
+              <span class="tag">Traceability</span>
+              <span class="tag">Coverage & Risk</span>
+              <span class="tag">Execution Insights</span>
+            </div>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="miniTitle">showgrid.ai</div>
+            <div class="itemTitle">Signals + Analytics Layer</div>
+            <p class="itemCopy">
+              A structured layer for tracking key operational signals across workflows and turning scattered data into
+              clear views—without drowning teams in dashboards.
+            </p>
+            <a class="linkArrow" href="#contact">Learn more <span>→</span></a>
+            <div class="divider"></div>
+            <div class="tagRow">
+              <span class="tag">Unified Signals</span>
+              <span class="tag">Decision Views</span>
+              <span class="tag">Operational Clarity</span>
+            </div>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="miniTitle">Custom builds</div>
+            <div class="itemTitle">Applied AI + SaaS delivery</div>
+            <p class="itemCopy">
+              For teams with a specific problem to solve, we build and operationalize product-grade solutions—from data
+              pipelines to models to UX and adoption.
+            </p>
+            <a class="linkArrow" href="#contact">Discuss a build <span>→</span></a>
+            <div class="divider"></div>
+            <div class="tagRow">
+              <span class="tag">Data → Model → Workflow</span>
+              <span class="tag">Governance</span>
+              <span class="tag">Scale-ready</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Capabilities</h2>
+            <p class="subhead">
+              Modular expertise across product, data, and AI—assembled to match your context and deliver measurable outcomes.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="card pad reveal">
+            <div class="itemTitle">Engineering</div>
+            <p class="itemCopy">
+              SaaS product development • APIs & integrations • Cloud architecture • Observability & reliability • CI/CD
+            </p>
+            <div class="tagRow">
+              <span class="tag">Web Apps</span><span class="tag">APIs</span><span class="tag">Cloud</span><span class="tag">DevOps</span>
+            </div>
+          </div>
+          <div class="card pad reveal">
+            <div class="itemTitle">AI/ML + Data</div>
+            <p class="itemCopy">
+              LLM workflows • NLP/classification • Retrieval & knowledge systems • Predictive models • Analytics engineering
+            </p>
+            <div class="tagRow">
+              <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Forecasting</span><span class="tag">BI</span>
+            </div>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="itemTitle">Decision intelligence</div>
+            <p class="itemCopy">
+              Risk signals • Operational dashboards • Alerting that reduces noise • Governance & measurement frameworks
+            </p>
+            <div class="tagRow">
+              <span class="tag">Signal Design</span><span class="tag">Risk Views</span><span class="tag">Readiness</span>
+            </div>
+          </div>
+
+          <div class="card pad reveal">
+            <div class="itemTitle">Quality modernization</div>
+            <p class="itemCopy">
+              Automation strategy • Traceability • Coverage modeling • Release confidence • Quality reporting that supports decisions
+            </p>
+            <div class="tagRow">
+              <span class="tag">Automation</span><span class="tag">Traceability</span><span class="tag">Coverage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW WE WORK -->
+    <section>
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>How we work</h2>
+            <p class="subhead">Simple, outcome-oriented, and designed to scale with your team.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card pad reveal">
+            <div class="miniTitle">1</div>
+            <div class="itemTitle">Diagnose the signal problem</div>
+            <p class="itemCopy">What matters, what’s noise, and what decisions must improve.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="miniTitle">2</div>
+            <div class="itemTitle">Build the platform layer</div>
+            <p class="itemCopy">Data + models + workflows—built for adoption and governance.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="miniTitle">3</div>
+            <div class="itemTitle">Operationalize outcomes</div>
+            <p class="itemCopy">Measurement, iteration, and readiness to scale in production.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRIES -->
+    <section id="industries">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>Where we typically help</h2>
+            <p class="subhead">Broad experience across high-velocity, high-stakes workflows.</p>
+          </div>
+        </div>
+
+        <div class="card pad reveal">
+          <div class="tagRow" style="margin-top:0;">
+            <span class="tag">SaaS & Technology</span>
+            <span class="tag">FinTech & BFSI</span>
+            <span class="tag">Healthcare & Life Sciences</span>
+            <span class="tag">Retail & Commerce</span>
+            <span class="tag">Logistics & Operations</span>
+            <span class="tag">Enterprise Platforms</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="sectionHead reveal">
+          <div>
+            <h2>About Clause Holdings</h2>
+            <p class="subhead">
+              Clause Holdings is a product-led technology company focused on building AI-enabled platforms that create clarity at scale.
+              We combine engineering discipline, analytics depth, and pragmatic AI to deliver systems teams can trust in production.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card pad reveal">
+            <div class="itemTitle">Clarity over volume</div>
+            <p class="itemCopy">Reduce noise. Increase decision speed and confidence.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="itemTitle">Systems thinking</div>
+            <p class="itemCopy">Design platforms that hold up under real-world complexity.</p>
+          </div>
+          <div class="card pad reveal">
+            <div class="itemTitle">Measurable outcomes</div>
+            <p class="itemCopy">Define success metrics upfront and iterate with intent.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT CTA -->
+    <section id="contact" class="ctaBand">
+      <div class="wrap">
+        <div class="ctaInner reveal">
+          <div>
+            <div class="pill"><span class="dot" aria-hidden="true"></span> Let’s build the layer that makes your systems easier to run.</div>
+            <h2 style="margin-top:12px;">Start a conversation</h2>
+            <p class="subhead" style="margin-top:6px;">
+              Exploring AI/ML, SaaS modernization, analytics platforms, or quality intelligence? We’ll map your use case and recommend the fastest path to value.
+            </p>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap: wrap;">
+            <!-- Replace with your real email/domain -->
+            <a class="btn primary" href="mailto:hello@clauseholdings.com?subject=Inquiry%20—%20Clause%20Holdings&body=Hi%20Clause%20Holdings%2C%0A%0AWe%E2%80%99d%20like%20to%20discuss%20...%0A%0AThanks%2C">Email us</a>
+            <a class="btn" href="#products">View platforms</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footRow">
+        <div>© <span id="year"></span> Clause Holdings. All rights reserved.</div>
+        <div style="display:flex; gap:14px; flex-wrap: wrap;">
+          <a href="#top">Top</a>
+          <a href="#contact">Contact</a>
+          <!-- Add LinkedIn / Privacy links when ready -->
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const mobilePanel = document.getElementById('mobilePanel');
+
+    if (menuBtn) {
+      menuBtn.addEventListener('click', () => {
+        const open = mobilePanel.classList.toggle('show');
+        menuBtn.setAttribute('aria-expanded', String(open));
+      });
+
+      // close menu on click
+      mobilePanel.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          mobilePanel.classList.remove('show');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('on');
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  </script>
+</body>
+</html>
